@@ -20,48 +20,77 @@
 # In this section, you will load the CountLove data and necessary packages.
 
 # (1.a) Load the `stringr` package, which you will use later. (1 point)
-
+library(stringr)
 # (1.b) Load the data from CountLove by using the following URL: https://countlove.org/data/data.csv
-# Save this dataframe into a variable called `protest_data` (1 point)
+CountLove <- read.csv("https://countlove.org/data/data.csv")
+
+# Save this dataframeu into a variable called `protest_data` (1 point)
+protest_data <- CountLove
+
+
 
 #  Whenever we load data, the first thing we want to do is manually examine it, see how it looks, and make sure we understand what each column (or feature) and each row (or record) in the dataset means.
+
 # Open the dataframe by clicking the spreadsheet icon in the Environment or by using View(). Manually examine the data by scrolling through it.
+
+
 
 # (1.c) Without using code, look at all the the column names in the dataset, and then type each column name in the comment below, with each column name separated by a comma. (1 point)
 # Column 1, Column 2, Column 3...
 
+## Date, Location, attendees, event...legacy...see.tags., tags, curated, source, Total.Articles
+
 # (1.d) Without using code, pick one row in the dataset (any row!), and then type in all the values from that row, with each value separated by a comma. (1 point)
+
+## 2017-01-20, University of Washington, Seattle, WA, Racial Injustice, Civil Rights; For racial justice; Against invited speaker, Yes, http://komonews.com/news/local/woman-says-she-, 2
+
 # For ex: 2018-01-01, University of Washington, Seattle, WA...
 
 # (1.e) How many protests are recorded in the dataset in total? Use an R function to determine this number and then save it in a variable called `num_protests`  (1 point)
 # Hint: This is the same number as the number of rows in the dataset!
+num_protests <- nrow(protest_data)
 
 # (1.f) How many features (or columns) are recorded for each protest? It's important to know how to find this number programmatically as well as manually
 # Save the number of features for each protest in a variable called `num_features` (1 point)
+num_features <- ncol(protest_data)
 
 ## Part 2: Attendees ------------------------------------------------------
 # In this part, you will explore the number of people who participated in the protests
 
 # (2.a) Extract the `Attendees` column into a variable called `num_attendees`  (1 point)
+library(dplyr)
+
+number_attending <- protest_data %>% filter(Attendees != "N/A")
+number_attendees <- sum(number_attending$Attendees)
+
+
+
 
 # (2.b) What is the fewest number of attendees at a protest?
 # Save the number of protests in a variable called `min_attendees` (2 points)
 # Hint: Remember to exclude NA values when using the functions below!
 
+min_attendees <- min(number_attending$Attendees)
+
 # (2.c) What is the greatest number of attendees at a protest?
 # Save the number of protests in a variable called `max_attendees` (2 points)
 
+max_attendees <- max(number_attending$Attendees)
 
 # (2.d) What is the average (mean) number of attendees at a protest?
 # Save the number of protests in a variable called `mean_attendees` (2 points)
 
+mean_attendees <- mean(number_attending$Attendees)
 
 # (2.e) What is the median number of attendees?
 # Save the number of protests in a variable called `median_attendees` (2 points)
 
+median_attendees <- median(number_attending$Attendees)
 
 # (2.f) What is the difference between the mean and median number of attendees? Subtract median_attendees from mean_attendees
 # Save the difference in a variable called `difference_attendees` (1 point)
+
+difference_attendees <- mean_attendees - median_attendees
 
 # Reflection 1 (answer in the README.md file)
 # Why do you think the mean is higher than the median? Which metric would you use in a report about this data, and why?
@@ -72,27 +101,49 @@
 
 # (3.a) Extract the `Location` column into a variable called `locations` (1 point)
 
+locations <- protest_data %>% select(Location)
+
+
 # (3.b) How many *unique* locations are in the dataset?
 # Save the number of unique locations in a variable called `num_locations` (1 point)
 
+num_locations <- unique(locations$Location)
 
 # (3.c) How many protests occurred in the state of Washington?
 # Use a function from the stringr package to detect the letters "WA" in the Location column and filter to only keep WA locations
 # Then, calculate the number of protests recorded in Washington
 # Save the number of WA locations in a variable called `num_in_wa` (3 points)
 
+detect_wa <- str_detect(protest_data$Location, "WA")
+num_in_wa <- sum(detect_wa)
+
+detect_wa <- str_detect(protest_data$Location, "WA")
+num_in_wa1 <- length(detect_wa)
 
 # (3.d) What proportion of protests occurred in Washington?
 # Divide the number of protests in Washington by the total number of protests
 # Save this proportion in a variable called `prop_in_wa` (1 point)
 
+prop_in_wa <- (num_in_wa / nrow(locations) * 100)
 
 # (3.e) Now, using the same stringr function and building on the code that you've written above, write a function `count_protests_in_location()` that accepts a location and then returns (not prints) the following sentence: "There were [N] protests in [LOCATION]."
 # For example: "There were 20 protests in Seattle." "There were 50 protests in NY." 
-# If the location is not found in the dataset, the function should return the sentence: "Sorry, that location is not found." (6 points)
+# If the location is not found in the dataset, the function should return the sentence: "Sorry that location is not found" (6 points)
+
+count_protests_in_location <- function(location) {
+  count <- sum(str_detect(locations, location))
+  if(count >0){
+    paste("there were", count, "protests in", location)
+  }else{
+    paste("Sorry that location is not found")
+  }
+}
+
 
 # (3.f) Use your `count_protests_in_location()` function above to compute the number of protests in "Washington, DC" and return the resulting message
 # Save the resulting message in a variable called `dc_summary` (1 point)
+
+dc_summary <- count_protests_in_location()
 
 # (3.g) Use your function above to compute the number of protests in "Minneapolis" and return the resulting message (1 point)
 # # Save the resulting message in a variable called `minneapolis_summary`
