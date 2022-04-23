@@ -38,12 +38,19 @@ Next, we're going to reflect about who collected this data, and what's actually 
 ## While You Code: Critical Analysis & Reflection
 
 - Reflection 1: Why do you think the mean is higher than the median? Which metric would you use in a report about this data, and why? Please answer in 2-3 sentences (2 points)
-
+    
+     I think that the New york times data has a higher mean than median. I think this because It has a higher for maxes and lower min numbers. 
+     
 - Reflection 2: Before actually calculating the number of protests that occurred in 2018, 2019, 2020, record your guesses for the following questions. (1 point)
 
+    my guess currently is 500 people for 2018, around 600 2019, around 550 for 2020. 
+
   Guess: Do you think there were more protests in 2019 than in 2018? Why or why not? Please answer in 1 or 2 sentences
+        Yes I belive that 2019 will be more than 2018. This is because I feel people were more aware later in the years.
 
   Guess: Do you think there were more protests in 2020 than in 2019? Why or why not? Please answer in 1 or 2 sentences
+  
+        Yes I do belive that 2020 will have more protest than 2019. As I said before, this is because I feel people were more aware later in the years.
 
 - Reflection 3: Does the change in the number of protests from 2018 to 2019 to 2020 surprise you? Why or why not? What do you think explains the fluctuation? Please answer in 1 or 2 sentences (2 points)
 
