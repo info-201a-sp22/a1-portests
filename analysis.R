@@ -139,8 +139,6 @@ count_protests_in_location <- function(location) {
 
 # (3.f) Use your `count_protests_in_location()` function above to compute the number of protests in "Washington, DC" and return the resulting message
 
-count_protests_in_location("Washington, DC")
-
 # Save the resulting message in a variable called `dc_summary` (1 point)
 
 
@@ -149,7 +147,6 @@ dc_summary <- count_protests_in_location("Washington, DC")
 # (3.g) Use your function above to compute the number of protests in "Minneapolis" and return the resulting message (1 point)
 # # Save the resulting message in a variable called `minneapolis_summary`
 
- count_protests_in_location("Minneapolis")
 minneapolis_summary <- count_protests_in_location("Minneapolis")
 
 # (3.h) Let's try to find out how many protests occurred in each state. To do so, first use a stringr function to extract the last 2 characters from every location and use these 2 characters to create a new vector called `states` (3 points)
