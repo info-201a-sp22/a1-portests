@@ -23,17 +23,35 @@ To get more familiar, we are going to begin by doing some background reading.
 
 - First, please read [this FAQ](https://countlove.org/faq.html) from the CountLove website and the opening of [this blog post](https://www.tommyleung.com/countLove/index.htm). Based on the information in these pieces, why did the creators start collecting the CountLove data? Please answer in 2-3 sentences (3 points)
 
+According to their website,  "Our initial protest data for the 2017 Women's March came from the Crowd Counting Consortium, who are continuing to document protests in the United States". Which is why they creadted the data set
+
+
+
 - Next, we would like you to read this [*New York Times* piece, which uses CountLove data](https://www.nytimes.com/interactive/2020/06/13/us/george-floyd-protests-cities-photos.html) (here's a [Google Doc version for anyone who gets paywalled](https://docs.google.com/document/d/1sdjFsA5csYuH4plNEEk7WXT77K5h5ZuyW05CBwYdk6A/edit?usp=sharing)), and which describes the Black Lives Matter protests that occurred in the summer of 2020. Please summarize the main point or argument of this article in 2-3 sentences (3 points)
+
+
+
+   Their main port is that the black lives matter protest has reached all parts of the unitedstates. It is important to document preotests such as these.
+
+
 
 Next, we're going to reflect about who collected this data, and what's actually inside it.
 
 - Who collected and shared the CountLove data, and what do they do for a living? Please answer in 1-2 sentences(2 points)
 
+     The people who collected the data are Tommy Leung and Nathan Perkins, engineers and scientists with a keen interest in civic responsibility and public policy. 
+
 - As Klein and D'Ignazio remind us, when it comes to data, "what gets counted counts." What types of demonstrations does CountLove include in their data, and what types do they exclude? (3 points)
+
+   What gets counted is public displays of protest that are not part of “regular business.” 
 
 - How and where does CountLove get their data about the protests? Please answer in 2-3 sentences (2 points)
 
+ According to their website, "We crawl local newspaper and television sites on a daily basis, and most of our protest data come from these crawls". That is how they get their information
+ 
 - How does CountLove make their estimates about the number of people who attended a protest? What potential problems might arise from this method of estimation? Please answer in 3-4 sentences (4 points)
+
+   The potential problems is that there are only so many papers and news that cover events. Smaller events often go uncovered, and therefore, unaccounted for. 
 
 ## While You Code: Critical Analysis & Reflection
 
@@ -53,8 +71,12 @@ Next, we're going to reflect about who collected this data, and what's actually 
         Yes I do belive that 2020 will have more protest than 2019. As I said before, this is because I feel people were more aware later in the years.
 
 - Reflection 3: Does the change in the number of protests from 2018 to 2019 to 2020 surprise you? Why or why not? What do you think explains the fluctuation? Please answer in 1 or 2 sentences (2 points)
+      
+      This did not suprise me because the cases rose as it got closer to 2020 since it was the time where the BLM movement had spiked. 
 
 - Reflection 4: What is the first and fourth most frequent category of protest? Do these frequencies align with your sense of the major protest movements in the U.S. in the last few years? Why or why not? (3 points)
+
+     To be honest, the most frequrnt of catagories would have to be the protests in 2018-2020 since they alinghed with my prior knowlage as well as their rate of growth. 
 
 ## After You Code: Critical Analysis & Reflection
 
@@ -67,6 +89,14 @@ In the second chapter of *Data Feminism*, Klein and D'Ignazio describe 4 ways th
 
 - How does the CountLove project embody one or more of these 4 forms of challenging power? Please answer in at least 3-4 sentences (3 points)
 
+The countloce project embodys the form of power in stucture. After looking through the entierty of the data, I can say that the data created from countlace is one that can single out countries to find issues of social structere. For example, we can ask why a specific area had no protests/ little protests and we can try to solve it from there. 
+
+  
+  
 - What is the most interesting or surprising thing you learned from this analysis? Please answer in at least 2-3 sentences (2 points)
 
+  From thus anayalist, learning how to use function is one of the most interesting things I learned. It was very hard at first, but the returining of the variable was someting that really made me think. 
+
 - What is a kind of analysis that you would like to do or that would be interesting to do with the CountLove data that you don't have the time or skills to accomplish at this moment? Please answer in at least 2-3 sentences (2 points)
+
+   The kind of analysis I would love to do with count love is try to single out the less protested areas of the united states. I dont really have the time or skills to acomplish that to its entierty, but I feel that it would be usefull to know. 

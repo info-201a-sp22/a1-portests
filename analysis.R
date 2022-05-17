@@ -22,10 +22,9 @@
 # (1.a) Load the `stringr` package, which you will use later. (1 point)
 library(stringr)
 # (1.b) Load the data from CountLove by using the following URL: https://countlove.org/data/data.csv
-CountLove <- read.csv("https://countlove.org/data/data.csv")
 
 # Save this dataframeu into a variable called `protest_data` (1 point)
-protest_data <- CountLove
+protest_data <- read.csv("https://countlove.org/data/data.csv")
 
 
 
@@ -101,60 +100,71 @@ difference_attendees <- mean_attendees - median_attendees
 
 # (3.a) Extract the `Location` column into a variable called `locations` (1 point)
 
-locations <- protest_data %>% select(Location)
+locations <- protest_data$Location
 
 
 # (3.b) How many *unique* locations are in the dataset?
 # Save the number of unique locations in a variable called `num_locations` (1 point)
 
-num_locations <- unique(locations$Location)
+num_locations <- length(unique(locations))
 
 # (3.c) How many protests occurred in the state of Washington?
 # Use a function from the stringr package to detect the letters "WA" in the Location column and filter to only keep WA locations
 # Then, calculate the number of protests recorded in Washington
 # Save the number of WA locations in a variable called `num_in_wa` (3 points)
 
-detect_wa <- str_detect(protest_data$Location, "WA")
-num_in_wa <- sum(detect_wa)
+num_in_wa <- sum(str_detect(locations, "WA"))
 
-detect_wa <- str_detect(protest_data$Location, "WA")
-num_in_wa1 <- length(detect_wa)
 
 # (3.d) What proportion of protests occurred in Washington?
 # Divide the number of protests in Washington by the total number of protests
 # Save this proportion in a variable called `prop_in_wa` (1 point)
 
-prop_in_wa <- (num_in_wa / nrow(locations) * 100)
+prop_in_wa <- (num_in_wa / num_protests)
 
 # (3.e) Now, using the same stringr function and building on the code that you've written above, write a function `count_protests_in_location()` that accepts a location and then returns (not prints) the following sentence: "There were [N] protests in [LOCATION]."
 # For example: "There were 20 protests in Seattle." "There were 50 protests in NY." 
 # If the location is not found in the dataset, the function should return the sentence: "Sorry that location is not found" (6 points)
-
+library(lobstr)
 count_protests_in_location <- function(location) {
-  count <- sum(str_detect(locations, location))
-  if(count >0){
-    paste("there were", count, "protests in", location)
-  }else{
-    paste("Sorry that location is not found")
+  location_sum <- str_detect(locations, location)
+  if(location > 0){
+  return(paste("There were", sum(location_sum), "protests", "in", location, ".")) 
+  }
+  else{
+    return(paste("Sorry that location is not found"))
   }
 }
 
 
 # (3.f) Use your `count_protests_in_location()` function above to compute the number of protests in "Washington, DC" and return the resulting message
+
+count_protests_in_location("Washington, DC")
+
 # Save the resulting message in a variable called `dc_summary` (1 point)
 
-dc_summary <- count_protests_in_location()
+
+dc_summary <- count_protests_in_location("Washington, DC")
 
 # (3.g) Use your function above to compute the number of protests in "Minneapolis" and return the resulting message (1 point)
 # # Save the resulting message in a variable called `minneapolis_summary`
 
+ count_protests_in_location("Minneapolis")
+minneapolis_summary <- count_protests_in_location("Minneapolis")
+
 # (3.h) Let's try to find out how many protests occurred in each state. To do so, first use a stringr function to extract the last 2 characters from every location and use these 2 characters to create a new vector called `states` (3 points)
+
+states <- c(str_sub(locations, -2, -1))
 
 # (3.i) How many unique states are in the dataset? Create a vector of just the unique states in the dataset
 # Save the unique states in a variable called `uniq_states` (1 point)
 
+uniq_states <- unique(states)
+
 # (3.j) Now apply your `count_protests_in_location` function to every state in`uniq_states` by using the `sapply()` function.
 # Store all your messages in a variable called `state_summary`  (4 points)
+
+state_summary <- sapply(uniq_states, count_protests_in_location)
 
 ## Part 4: Dates ----------------------------------------------------------
 # In this part, you will explore *when* protests happened.
@@ -162,27 +172,45 @@ dc_summary <- count_protests_in_location()
 # (4a) Extract the `Date` column and convert it into a data by using the `as.Date()` function.
 # Save this value in a variable called `dates` (2 points)
 
+dates <- as.Date(protest_data$Date)
+
 # (4.b) What is the most recent date in the dataset? (2 point)
 # Store this value in a variable called `most_recent_protest`
 
+most_recent_protest <- max(dates, na.rm = TRUE)
+
 # (4.c) What is the earliest date in the dataset? (2 point)
 # Store this value in a variable called `earliest_protest`
+
+earliest_protest <- min(dates, na.rm = TRUE)
 
 # (4.d) What is the timespan of the dataset — in other words, the distance between the earliest protest and most recent protest? (1 point)
 # Hint: R can do math with dates pretty well by default!
 # Store this value in a variable called `time_span`
 
+time_span <- (most_recent_protest) - (earliest_protest)
+
 # (4.e) Now, create a vector of only the dates that are in 2020.
 # Note: If you want only dates after a certain start date, you can use "2020-01-01" with comparison operators (==, >=, <=)
 # Store this value in a variable called `protests_in_2020` (2 points)
+
+protests_in_2020 <- dates[(str_detect( dates, "2020"))]
 
 # (4.f) Create a vector of only the dates that are in 2019. (2 points)
 # Note: If you want only dates after a certain start date, you can use "2020-01-01" with comparison operators (==, >=, <=)
 # Store this value in a variable called `protests_in_2019`
 
+
+
+protests_in_2019 <- dates[str_detect( dates, "2019")]
+
 # (4.f) Create a vector of only the dates that are in 2018. (2 points)
 # Note: If you want only dates after a certain start date, you can use "2020-01-01" with comparison operators (==, >=, <=)
-# Store this value in a variable called `protests_in_2018`
+# Store this value in a variable called `protests_in_2018
+
+
+
+protests_in_2018 <- dates[str_detect(dates, "2018")]
 
 # Reflection 2 (answer in the README.md file)
 # When we're doing data analysis work, we always want to test our assumptions and see whether or not patterns align with our expectations or depart from them.
@@ -192,23 +220,42 @@ dc_summary <- count_protests_in_location()
 
 
 # (4.g) Now use the length() function to find out how many protests happened in 2018 vs. 2019 vs. 2020. 
-# Save them in the varaibles `num_protets_in_2018`, `num_protets_in_2019`, `num_protets_in_20120`(3 points)
+# Save them in the varaibles `num_protets_in_2018`, `/num_protets_in_2019`, `num_protets_in_2020`(3 points)
+
+     
+num_protets_in_2018 <- length(protests_in_2018)
+
+num_protets_in_2019 <- length(protests_in_2019)
+
+num_protets_in_2020 <- length(protests_in_2020)
 
 # Reflection 3 (answer in the README.md file)
 # Does the change in the number of protests from 2018 to 2019 to 2020 surprise you? Why or why not? What do you think explains the fluctuation?
+
+
 
 
 ## Part 5: Protest Purpose ------------------------------------------------
 # In this section, you will explore *why* the protests happened.
 
 # (5.a) Extract the `Event..legacy..see.tags.` column into a variable called `purposes` (1 point)
+purpose <-protest_data$Event..legacy..see.tags.
+
 
 # (5.b) How many different unique purposes are listed in the dataset? (1 point)
 # Save this number in a variable called `num_purposes`
 
+num_purposes <- length(unique(purpose))
+
 # That's quite a few! Use View() to examine the `purposes` vector. You will notice a common pattern for each purpose, formatted something like this: Civil Rights (Transgender Rights)
 
+View(num_purposes)
+
 # (5.c) To get a summary of just the higher level categories (e.g., just "Civil Rights" and not "(Transgender Rights)"), we're going to use some R functions to extract only the text before the parenthesis and then save them in a variable `high_level_purposes` (5 points)
+
+level_purpose <- c(purpose)
+high_level_purpose <- trimws(gsub("\\(.*", "", purpose))
+View (purpose)
 
 # There are some built-in R functions where you can replace text using regular expressions.
 # Regular expressions are a special syntax that lets you match patterns.
@@ -216,10 +263,15 @@ dc_summary <- count_protests_in_location()
 gsub("@.*", "", "melwalsh@uw.edu")
 # Note: Some regular expression characters, like parenthesis, have a special meaning, so if you want to use them, you need to first "escape" them: https://uc-r.github.io/regex#metacharacters
 # See what happens when you run the code below, and use the help() function to learn more about this function
+
  trimws(" hello ")
  
 
 # Make a table of your `high_level_protests` by using table() and then View() it
+ 
+ high_level_purpose_table <- table(high_level_purpose)
+ print(high_level_purpose_table)
+ View(high_level_purpose_table)
  
  # Reflection 4 (answer in README.md file): What is the first and fourth most frequent category of protest? Do these frequencies align with your sense of the major protest movements in the U.S. in the last few years? Why or why not? (3 points)
 
